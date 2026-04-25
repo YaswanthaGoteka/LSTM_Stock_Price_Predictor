@@ -1,20 +1,52 @@
-# LSTM_Stock_Price_Predictor Version 1 (simple and not usable in real trading environment)
-#### This project demonstrates a conceptual PyTorch-based LSTM stock price prediction model using historical market data from Yahoo Finance. The script downloads daily closing prices for a selected stock (default: GOOGL), scales the data, and converts it into fixed-length sequences for time-series learning.
+# LSTM Stock Price Prediction (PyTorch)
 
-#### A multi-layer LSTM neural network is built from scratch to learn temporal price patterns and predict the next day’s closing price based on the previous 30 days. The model is trained using Mean Squared Error loss and the Adam optimizer, with gradient clipping applied for stability. After training, the model performs inference on the most recent data, inverse-scales the prediction, and generates a simple BUY/SELL signal by comparing the predicted price to the latest real close.
+## Overview
+This project implements a PyTorch-based LSTM model to predict stock closing prices using historical data from Yahoo Finance. Given the past 30 days of price data, the model learns temporal patterns and forecasts the next day’s closing price.
 
-Important Notes:
+The pipeline includes data preprocessing, sequence generation, model training, and inference, ending with a simple BUY/SELL signal based on predicted vs actual prices.
 
-- **This is not a production-ready trading system—it is a learning-focused, proof-of-concept implementation.**
+## Features
+- Time-series forecasting using LSTM neural networks
+- Automated data collection via Yahoo Finance
+- Data normalization and sequence generation
+- Multi-layer LSTM architecture built from scratch
+- Gradient clipping for training stability
+- Inference pipeline with inverse scaling
+- Basic trading signal generation (BUY/SELL)
 
-- GPU usage is expected for proper execution and performance.
+## Model Details
+- Input: 30-day sliding window of closing prices
+- Architecture: Multi-layer LSTM + Fully Connected layer
+- Loss Function: Mean Squared Error (MSE)
+- Optimizer: Adam
+- Output: Next-day predicted closing price
 
- - No backtesting, risk management, or real-world trading constraints are included.
+## Example Workflow
+1. Download historical stock data (default: GOOGL)
+2. Normalize and convert data into sequences
+3. Train LSTM model on time-series data
+4. Predict next-day price
+5. Generate BUY/SELL signal
 
-The project is intended to showcase core ideas behind time-series forecasting, LSTM architecture, and PyTorch workflows for financial data analysis.
+## Limitations
+- Not a production-ready trading system
+- No backtesting or evaluation on unseen market regimes
+- No risk management or transaction cost modeling
+- Uses only closing price (limited feature set)
 
-### Future Improvements:
-1. Implement a more advanced model architecture (e.g., stacked LSTM, GRU, or Transformer-based time-series models).
-2. Add walk-forward (rolling) validation to better simulate real-world trading conditions.
-3. Incorporate additional features such as technical indicators, volume, and macroeconomic data.
-4. Optimize hyperparameters using automated tuning (Grid Search or Bayesian Optimization).
+## Future Improvements
+- Implement advanced architectures (GRU, Transformers)
+- Add technical indicators, volume, and macroeconomic features
+- Perform walk-forward validation for realistic evaluation
+- Hyperparameter optimization (Grid Search / Bayesian methods)
+- Integrate backtesting framework
+
+## Tech Stack
+- Python
+- PyTorch
+- NumPy / Pandas
+- yFinance
+- Scikit-learn
+
+## Disclaimer
+This project is for educational purposes only and should not be used for real trading decisions.
